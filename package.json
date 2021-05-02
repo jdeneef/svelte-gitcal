@@ -1,5 +1,5 @@
 {
-  "name": "svelte-ts-component-template",
+  "name": "svelte-gitcal",
   "svelte": "src/index.ts",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -25,21 +25,32 @@
   },
   "keywords": [
     "component",
-    "svelte"
+    "svelte",
+    "git",
+    "gitcal",
+    "calendar"
   ],
   "files": [
     "src",
     "dist"
   ],
-  "description": "A Svelte component library template with TypeScript support",
-  "version": "1.0.0",
+  "description": "A Svelte component library for a github lookalike calendar",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patrickroberts/svelte-ts-component-template.git"
+    "url": ""
   },
-  "author": "Patrick Roberts",
+  "author": "J de Neef",
   "bugs": {
-    "url": "https://github.com/patrickroberts/svelte-ts-component-template/issues"
+    "url": "https://github.com/jdeneef/svelte-gitcal/issues"
   },
-  "homepage": "https://github.com/patrickroberts/svelte-ts-component-template#readme"
+  "homepage": "https://github.com/jdeneef/svelte-gitcal#readme",
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "jsxBracketSameLine": true,
+    "arrowParens": "avoid"
+  }
 }

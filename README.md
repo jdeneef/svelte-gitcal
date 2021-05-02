@@ -1,29 +1,42 @@
-# svelte-ts-component-template
+# Svelte-gitcal component 
+A Github lookalike calender svelte component
 
-A base for building shareable Svelte components. Clone it with [degit](https://github.com/Rich-Harris/degit):
+Demo: [de-neef.net/gitlog](https://de-neef.net/gitlog)
+
+Based upon: 
+- [svelte-ts-component-template](https://github.com/patrickroberts/svelte-ts-component-template) but updated
+- which in turn is based upon the [svelte component template](https://github.com/sveltejs/component-template)
 
 ```bash
-npx degit patrickroberts/svelte-ts-component-template my-new-component
-cd my-new-component
-npm install # or yarn
+npm install --save-dev svelte-gitcal
 ```
 
-Your component's source code lives in `src/Component.svelte`.
+Example usage:
 
-You can create a package that exports multiple components by adding them to the `src` directory and editing `src/index.ts` to reexport them as named exports.
+```js
+<script lang="ts">
+  import GitCal from 'svelte-gitcal'
 
-TODO
+  // generate gitlog with:
+  // $> git log --date=short --pretty=format:%ad | sort | uniq -c > git.log
+  const gitlog = fetch('https://<somewhere>/<gitlog output>').then(r =>
+    r.text()
+  )
+</script>
 
-* [ ] some firm opinions about the best way to test components
-* [ ] update `degit` so that it automates some of the setup work
+{#await gitlog then data}
+  <GitCal gitlog={data} months="12" styles={{ commits0: 'rgb(65,72,89)' }} />
+{/await}
+```
 
-## Setting up
+The calendar lists the number of commits in 4 categories, based upon the max commits per day for the entire period, so commit colors are relative to the max nr of commits (hence the not to clear legend ;-) )
 
-* Run `npm init` (or `yarn init`)
-* Replace this README with your own
+Available styles:
+- commits0: no commits
+- commits1: some commits
+- commits2: more commits
+- commits3: a lot
+- text: style for legend and month texts
 
-## Consuming components
 
-Your package.json has a `"svelte"` field pointing to `src/index.ts`, which allows Svelte apps to import the source code directly, if they are using a bundler plugin like [rollup-plugin-svelte](https://github.com/sveltejs/rollup-plugin-svelte) or [svelte-loader](https://github.com/sveltejs/svelte-loader) (where [`resolve.mainFields`](https://webpack.js.org/configuration/resolve/#resolve-mainfields) in your webpack config includes `"svelte"`). **This is recommended.**
 
-For everyone else, `npm run build` will bundle your component's source code into a plain JavaScript module (`dist/index.mjs`) and a UMD script (`dist/index.js`). This will happen automatically when you publish your component to npm, courtesy of the `prepublishOnly` hook in package.json.
