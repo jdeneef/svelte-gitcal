@@ -33,7 +33,9 @@ export default {
     commonjs(),
     typescript(),
     svelte({
-      dev: !production,
+      compilerOptions: {
+        dev: !production,
+      },
       preprocess: autoPreprocess({
         sourceMap: !production,
       }),
@@ -44,7 +46,7 @@ export default {
       ],
     }),
     production && terser(),
-    css({ output: 'index.css'})
+    css({ output: 'index.css' }),
   ],
   watch: {
     clearScreen: false,

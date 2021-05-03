@@ -11,7 +11,7 @@ Based upon:
 npm install --save-dev svelte-gitcal
 ```
 
-Example usage:
+Example usage with the colors as used on my demo page:
 
 ```js
 <script lang="ts">
@@ -25,7 +25,17 @@ Example usage:
 </script>
 
 {#await gitlog then data}
-  <GitCal gitlog={data} months="12" styles={{ commits0: 'rgb(65,72,89)' }} />
+  <GitCal 
+    gitlog={data} 
+    months="12" 
+    styles={{ 
+      commits0: '#6B7280',
+      commits1: '#9CA3AF',
+      commits2: '#D1D5DB',
+      commits3: '#F9FAFB',
+      text: '#F9FAFB'
+    }}
+  />
 {/await}
 ```
 

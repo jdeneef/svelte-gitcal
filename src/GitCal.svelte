@@ -1,11 +1,13 @@
 <script lang="ts">
   // generate gitlogfile:
   // $> git log --date=short --pretty=format:%ad | sort | uniq -c > git.log
-  export let gitlog: string
-  export let styles = {}
-  export let months = '6'
 
-  const _styles: { [id: string]: string } = {
+  type Styles = { [id: string]: string }
+  export let gitlog: string
+  export let styles: Styles = {}
+  export let months: string = '6'
+
+  const _styles:Styles = {
     commits0: 'rgb(22,27,34)',
     commits1: 'rgb(14,68,41)',
     commits2: 'rgb(38, 166, 65)',
@@ -63,6 +65,7 @@
     if (c / maxcommits <= 0.7) return 'commits2'
     return 'commits3'
   }
+
 </script>
 
 {#if loading}
@@ -70,12 +73,12 @@
 {:else if error}
   {error}
 {:else}
-  <svg width={((days.length / 7) | 0) * 12 + 8} height={7 * 12 + 2 * 14}>
+  <svg width={((days.length / 7) | 0) * 12 + 12} height={7 * 12 + 2 * 14}>
     <g>
       {#each days as day, index}
         {#if day.date.getDate() === 1}
           <text
-            use:setStyles={{ fill: _styles.text }}
+            use:setStyles={{ fill: _styles.text, 'font-size': 'xx-small' }}
             class="text"
             x={((index / 7) | 0) * 12}
             y="10"
@@ -117,7 +120,7 @@
           <title>{text}</title>
         </rect>
         <text
-          use:setStyles={{ fill: _styles.text }}
+          use:setStyles={{ fill: _styles.text, 'font-size': 'xx-small' }}
           class="text"
           x={index * 45 + 12 + 2}
           y={14 + 7 * 12 + 10}
@@ -129,9 +132,3 @@
     </g>
   </svg>
 {/if}
-
-<style>
-  .text {
-    font-size: xx-small;
-  }
-</style>

@@ -1,1 +1,1 @@
-export { default as default } from './GitCal.svelte';
+export { default as default } from './GitCal.svelte'
