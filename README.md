@@ -46,7 +46,8 @@ Available styles:
 - commits1: some commits
 - commits2: more commits
 - commits3: a lot
-- text: style for legend and month texts
+- text-fill: fill style for legend and month texts
+- text-size: font-size for legend and month texts
 
 
 
