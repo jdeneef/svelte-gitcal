@@ -38,7 +38,7 @@
     "dist"
   ],
   "description": "A Svelte component library for a github lookalike calendar",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "repository": {
     "type": "git",
     "url": ""

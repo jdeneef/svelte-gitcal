@@ -7,12 +7,13 @@
   export let styles: Styles = {}
   export let months: string = '6'
 
-  const _styles:Styles = {
+  const _styles: Styles = {
     commits0: 'rgb(22,27,34)',
     commits1: 'rgb(14,68,41)',
     commits2: 'rgb(38, 166, 65)',
     commits3: 'rgb(57, 211, 83)',
-    text: 'rgb(201,209,217)',
+    'text-fill': 'rgb(201,209,217)',
+    'text-size': 'xx-small',
     ...styles,
   }
 
@@ -65,7 +66,6 @@
     if (c / maxcommits <= 0.7) return 'commits2'
     return 'commits3'
   }
-
 </script>
 
 {#if loading}
@@ -78,7 +78,10 @@
       {#each days as day, index}
         {#if day.date.getDate() === 1}
           <text
-            use:setStyles={{ fill: _styles.text, 'font-size': 'xx-small' }}
+            use:setStyles={{
+              fill: _styles['text-fill'],
+              'font-size': _styles['text-size'],
+            }}
             class="text"
             x={((index / 7) | 0) * 12}
             y="10"
@@ -120,7 +123,7 @@
           <title>{text}</title>
         </rect>
         <text
-          use:setStyles={{ fill: _styles.text, 'font-size': 'xx-small' }}
+          use:setStyles={{ fill: _styles['text-fill'], 'font-size': _styles['text-size'] }}
           class="text"
           x={index * 45 + 12 + 2}
           y={14 + 7 * 12 + 10}
