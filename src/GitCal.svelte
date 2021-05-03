@@ -10,8 +10,9 @@
   const _styles: Styles = {
     commits0: 'rgb(22,27,34)',
     commits1: 'rgb(14,68,41)',
-    commits2: 'rgb(38, 166, 65)',
-    commits3: 'rgb(57, 211, 83)',
+    commits2: 'rgb(0,109,50)',
+    commits3: 'rgb(38, 166, 65)',
+    commits4: 'rgb(57, 211, 83)',
     'text-fill': 'rgb(201,209,217)',
     'text-size': 'xx-small',
     ...styles,
@@ -63,8 +64,9 @@
   const commits = (c: number) => {
     if (c === 0) return 'commits0'
     if (c / maxcommits <= 0.2) return 'commits1'
-    if (c / maxcommits <= 0.7) return 'commits2'
-    return 'commits3'
+    if (c / maxcommits <= 0.6) return 'commits2'
+    if (c / maxcommits <= 0.8) return 'commits3'
+    return 'commits4'
   }
 </script>
 
@@ -109,28 +111,41 @@
           >
         </rect>
       {/each}
-      {#each ['none', 'some', 'more', 'a lot'] as text, index}
+      <text
+        use:setStyles={{
+          fill: _styles['text-fill'],
+          'font-size': _styles['text-size'],
+        }}
+        class="text"
+        x="0"
+        y={14 + 7 * 12 + 10}
+      >
+        less
+      </text>
+      {#each ['0', '1', '2', '3', '4'] as text, index}
         {index}
         <rect
           fill={_styles['commits' + index]}
           width="10"
           height="10"
-          x={index * 45}
+          x={25 + index * 12}
           y={14 + 7 * 12 + 2}
           rx="2"
           ry="2"
-        >
-          <title>{text}</title>
-        </rect>
-        <text
-          use:setStyles={{ fill: _styles['text-fill'], 'font-size': _styles['text-size'] }}
-          class="text"
-          x={index * 45 + 12 + 2}
-          y={14 + 7 * 12 + 10}
-        >
-          {text}
-        </text>
+        />
       {/each}
+      <text
+        use:setStyles={{
+          fill: _styles['text-fill'],
+          'font-size': _styles['text-size'],
+        }}
+        class="text"
+        x={25 + 5 * 12 + 6}
+        y={14 + 7 * 12 + 10}
+      >
+        more
+      </text>
+
       >
     </g>
   </svg>

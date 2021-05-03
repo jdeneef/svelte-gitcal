@@ -7,11 +7,13 @@ Based upon:
 - [svelte-ts-component-template](https://github.com/patrickroberts/svelte-ts-component-template) but updated
 - which in turn is based upon the [svelte component template](https://github.com/sveltejs/component-template)
 
+## Install
+
 ```bash
 npm install --save-dev svelte-gitcal
 ```
 
-Example usage with the colors as used on my demo page:
+## Example usage with the colors as used on my demo page:
 
 ```js
 <script lang="ts">
@@ -28,11 +30,12 @@ Example usage with the colors as used on my demo page:
   <GitCal 
     gitlog={data} 
     months="12" 
-    styles={{ 
+    styles={{
       commits0: '#6B7280',
-      commits1: '#9CA3AF',
-      commits2: '#D1D5DB',
-      commits3: '#F9FAFB',
+      commits1: '#9FA4AE',
+      commits2: '#BFC2C9',
+      commits3: '#EAEBED',
+      commits4: '#FFFFFF',
       'text-fill': '#F9FAFB'
     }}
   />
@@ -41,7 +44,7 @@ Example usage with the colors as used on my demo page:
 
 The calendar lists the number of commits in 4 categories, based upon the max commits per day for the entire period, so commit colors are relative to the max nr of commits (hence the not to clear legend ;-) )
 
-Available styles:
+## Styles:
 - commits0: no commits
 - commits1: some commits
 - commits2: more commits
