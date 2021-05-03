@@ -21,7 +21,6 @@
   let days: { date: Date; commits: number }[] = []
   let loading = true
   let maxcommits = 0
-  let error = ''
 
   const _gitlog: { [id: string]: number } = gitlog
     .split('\n')
@@ -72,8 +71,6 @@
 
 {#if loading}
   Loading ..
-{:else if error}
-  {error}
 {:else}
   <svg width={((days.length / 7) | 0) * 12 + 12} height={7 * 12 + 2 * 14}>
     <g>
@@ -103,12 +100,12 @@
           rx="2"
           ry="2"
         >
-          <title
-            >{day.date.toDateString()} - {day.commits === 0
+          <title>
+            {day.date.toDateString()} - {day.commits === 0
               ? 'no '
               : day.commits}
-            commit{day.commits !== 1 ? 's' : ''}</title
-          >
+            commit{day.commits !== 1 ? 's' : ''}
+          </title>
         </rect>
       {/each}
       <text
@@ -122,7 +119,7 @@
       >
         less
       </text>
-      {#each ['0', '1', '2', '3', '4'] as text, index}
+      {#each [0, 1, 2, 3, 4] as index}
         {index}
         <rect
           fill={_styles['commits' + index]}
@@ -145,8 +142,6 @@
       >
         more
       </text>
-
-      >
     </g>
   </svg>
 {/if}
