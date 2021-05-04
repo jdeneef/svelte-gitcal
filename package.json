@@ -38,7 +38,8 @@
     "dist"
   ],
   "description": "A Svelte component library for a github lookalike calendar",
-  "version": "2.1.5",
+  "license": "ISC",
+  "version": "2.1.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/jdeneef/svelte-gitcal.git"
