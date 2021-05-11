@@ -20,7 +20,8 @@
 
   let days: { date: Date; commits: number }[] = []
   let loading = true
-  let maxcommits = 0
+  let maxCommits = 0
+  let totalCommits = 0
 
   const _gitlog: { [id: string]: number } = gitlog
     .split('\n')
@@ -52,7 +53,8 @@
       '-' +
       ('00' + date.getDate()).slice(-2)
     const commits = _gitlog[day] || 0
-    if (commits > maxcommits) maxcommits = commits
+    if (commits > maxCommits) maxCommits = commits
+    totalCommits += Number(commits)
     days.push({
       date: new Date(date),
       commits,
@@ -62,9 +64,9 @@
 
   const commits = (c: number) => {
     if (c === 0) return 'commits0'
-    if (c / maxcommits <= 0.2) return 'commits1'
-    if (c / maxcommits <= 0.6) return 'commits2'
-    if (c / maxcommits <= 0.8) return 'commits3'
+    if (c / maxCommits <= 0.2) return 'commits1'
+    if (c / maxCommits <= 0.6) return 'commits2'
+    if (c / maxCommits <= 0.8) return 'commits3'
     return 'commits4'
   }
 </script>
@@ -125,7 +127,7 @@
           fill={_styles['commits' + index]}
           width="10"
           height="10"
-          x={25 + index * 12}
+          x={24 + index * 12}
           y={14 + 7 * 12 + 2}
           rx="2"
           ry="2"
@@ -137,10 +139,21 @@
           'font-size': _styles['text-size'],
         }}
         class="text"
-        x={25 + 5 * 12 + 6}
+        x={24 + 5 * 12 + 6}
         y={14 + 7 * 12 + 10}
       >
         more
+      </text>
+      <text
+        use:setStyles={{
+          fill: _styles['text-fill'],
+          'font-size': _styles['text-size'],
+        }}
+        class="text"
+        x={24 + 9 * 12 + 6}
+        y={14 + 7 * 12 + 10}
+      >
+        max commits: {maxCommits} total commits: {totalCommits}
       </text>
     </g>
   </svg>

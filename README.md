@@ -1,5 +1,10 @@
 # Svelte-gitcal component 
-A Github lookalike calender svelte component
+A Github lookalike calender svelte component. Reading input from git log command and generate a git commit calendar.
+
+Git log format supported:
+```
+git log log --all --pretty=format:%ad --date=short | sort | uniq -c
+```
 
 Demo: [de-neef.net/gitlog](https://de-neef.net/gitlog)
 
