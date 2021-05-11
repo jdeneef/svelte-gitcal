@@ -52,9 +52,9 @@
       ('00' + (date.getMonth() + 1)).slice(-2) +
       '-' +
       ('00' + date.getDate()).slice(-2)
-    const commits = _gitlog[day] || 0
+    const commits = _gitlog[day] ? Number(_gitlog[day]) : 0
     if (commits > maxCommits) maxCommits = commits
-    totalCommits += Number(commits)
+    totalCommits += commits
     days.push({
       date: new Date(date),
       commits,
